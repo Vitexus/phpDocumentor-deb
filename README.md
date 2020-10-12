@@ -1,3 +1,5 @@
+![Logo](phpdocumentor.png?raw=true)
+
 # phpDocumentor-deb
 
 
