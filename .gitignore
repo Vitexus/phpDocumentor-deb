@@ -1,0 +1,6 @@
+phpDocumentor
+debian/phpdocumentor
+debian/debhelper-build-stamp  
+debian/files  debian/changelog  
+debian/phpdocumentor.debhelper.log  
+debian/phpdocumentor.substvars  

@@ -1,0 +1,29 @@
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	rm -rfv phpDocumentor
+	dh_auto_clean
+
+override_dh_prep:
+	git clone --depth 1 https://github.com/phpDocumentor/phpDocumentor.git
+	composer install --working-dir=phpDocumentor  --no-dev
+	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
+	php -d phar.readonly=off /usr/bin/phar-composer -n build --ansi phpDocumentor
+	dh_prep
+
+override_dh_auto_install:
+	dh_auto_install -- prefix=/usr
+	mkdir -p debian/phpdocumentor/usr/bin
+	mv phpdocumentor.phar	debian/phpdocumentor/usr/bin/phpdoc
+
+#override_dh_install:
+#       dh_install --list-missing -X.pyc -X.pyo
+
