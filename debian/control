@@ -4,11 +4,11 @@ Priority: optional
 Maintainer: "Vítězslav Dvořák" <info@vitexsoftware.cz>
 Build-Depends: debhelper (>=11~),phar-composer
 Standards-Version: 4.1.4
-Homepage: https://github.com/Vitexus/PhpDocumentator-deb.git
+Homepage: https://github.com/Vitexus/PhpDocumentor-deb.git
 
 Package: phpdocumentor
 Multi-Arch: foreign
-Depends: ${misc:Depends}, php-cli, php (>=7.2.5) | php7.3 | php7.4, php-ctype, php-dom, php-iconv, php-json, php-xml, php-simplexml, php-zip
+Depends: ${misc:Depends}, php-cli, php (>=7.2.5) | php7.3 | php7.4, php-ctype, php-dom, php-iconv, php-json, php-xml, php-simplexml, php-zip, libjs-font-awesome
 Architecture: all
 Description: enables you to generate documentation from your PHP source code. 
  a tool that makes it possible to generate documentation directly 
