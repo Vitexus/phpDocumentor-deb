@@ -14,7 +14,8 @@ override_dh_auto_clean:
 
 override_dh_prep:
 	git clone --depth 1 https://github.com/phpDocumentor/phpDocumentor.git
-	composer install --working-dir=phpDocumentor  --no-dev
+	php --version
+	composer update --working-dir=phpDocumentor  --no-dev
 	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
 	sed -i '/cache/c  return sys_get_temp_dir()."/". basename(\$$this->getProjectDir())."/".\$$this->environment;' phpDocumentor/src/phpDocumentor/Kernel.php
 	php -d phar.readonly=off /usr/bin/phar-composer -n build --ansi phpDocumentor
