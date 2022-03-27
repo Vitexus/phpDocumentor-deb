@@ -6,8 +6,6 @@
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
 VERSION := $(shell ./gettag)
-PHPVER  := $(shell php -v | head -1 | awk '{print $2}' | awk -F- '{print $1}' | sed 's/v//' )
-
 
 %:
 	dh $@
@@ -18,7 +16,7 @@ override_dh_auto_clean:
 
 override_dh_prep:
 	rm -rfv phpDocumentor
-	echo PHP: ${PHPVER}
+	echo PHP: `php -v | head -1 | awk '{print $2}' | awk -F- '{print $1}' | sed 's/v//'`
 	git clone --depth 1 --branch ${VERSION} https://github.com/phpDocumentor/phpDocumentor.git
 	composer update --working-dir=phpDocumentor  --no-dev
 	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
