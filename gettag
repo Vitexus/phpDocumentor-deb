@@ -10,10 +10,10 @@ verlt() {
     [ "$1" = "$2" ] && return 1 || verlte $1 $2
 }
 
-if [ `verlte 7.3  $PHPVER && echo 'v3.2.1' || echo stable` == "stable" ]; then
+verlte ${PHPVER} 7.3.99 && VERSION='v3.2.1'
+
+if [ -z $VERSION ]; then
     VERSION=`curl -s "https://api.github.com/repos/phpDocumentor/phpDocumentor/tags" | jq -r '.[0].name'`
-else
-    VERSION='v3.2.1'
 fi
 
 echo -n $VERSION

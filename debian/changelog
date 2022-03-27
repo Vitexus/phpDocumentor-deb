@@ -1,5 +1,9 @@
-phpdocumentor (3.0.0) UNRELEASED; urgency=medium
+phpdocumentor (3.2.1) UNRELEASED; urgency=medium
 
+  [ CyberVitexus ]
   * Phar Based build
 
- -- CyberVitexus <vitex@exiv.jinonice.czf>  Sun, 09 Aug 2020 15:30:39 +0200
+  [ vitex ]
+  * Updated to 3.2.1
+
+ -- vitex <info@vitexsoftware.cz>  Sun, 27 Mar 2022 21:44:43 +0200

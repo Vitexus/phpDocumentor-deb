@@ -18,7 +18,7 @@ override_dh_prep:
 	rm -rfv phpDocumentor
 	php -v | head -1 | awk '{print $$2}' | awk -F- '{print $$1}' | sed 's/v//'
 	git clone --depth 1 --branch ${VERSION} https://github.com/phpDocumentor/phpDocumentor.git
-	composer update --working-dir=phpDocumentor  --no-dev
+	composer update --working-dir=phpDocumentor  --no-dev --no-plugins
 	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
 	sed -i '/cache/c  return sys_get_temp_dir()."/". basename(\$$this->getProjectDir())."/".\$$this->environment;' phpDocumentor/src/phpDocumentor/Kernel.php
 	php -d phar.readonly=off /usr/bin/phar-composer -n build --ansi phpDocumentor
