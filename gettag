@@ -1,0 +1,25 @@
+#!/bin/bash
+PHPVER=`php -v | head -1 | awk '{print $2}'`
+
+
+verlte() {
+    [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
+}
+
+verlt() {
+    [ "$1" = "$2" ] && return 1 || verlte $1 $2
+}
+
+
+if [ `verlte $PHPVER 7.3.0 && echo 'v3.2.1' || echo stable` == "stable" ]; then
+    VERSION=`curl -s "https://api.github.com/repos/phpDocumentor/phpDocumentor/tags" | jq -r '.[0].name'`
+else
+    VERSION='v3.2.1'
+fi
+
+echo -n $VERSION
+
+
+
+
+
