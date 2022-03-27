@@ -1,3 +1,3 @@
 #!/bin/sh
-VERSION=`./gettag`
+VERSION=`./gettag|sed 's/v//'`
 dch -v $VERSION "Updated to $VERSION"
