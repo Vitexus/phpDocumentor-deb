@@ -15,7 +15,6 @@ override_dh_auto_clean:
 override_dh_prep:
 	rm -rfv phpDocumentor
 	echo git clone --depth 1 --branch `./gettag` https://github.com/phpDocumentor/phpDocumentor.git
-	git switch -c `./gettag`
 	composer update --working-dir=phpDocumentor  --no-dev
 	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
 	sed -i '/cache/c  return sys_get_temp_dir()."/". basename(\$$this->getProjectDir())."/".\$$this->environment;' phpDocumentor/src/phpDocumentor/Kernel.php
