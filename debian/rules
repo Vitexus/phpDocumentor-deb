@@ -16,6 +16,7 @@ override_dh_auto_clean:
 
 override_dh_prep:
 	rm -rfv phpDocumentor
+	php -v
 	git clone --depth 1 --branch ${VERSION} https://github.com/phpDocumentor/phpDocumentor.git
 	composer update --working-dir=phpDocumentor  --no-dev
 	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
