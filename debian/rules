@@ -28,7 +28,7 @@ override_dh_auto_install:
 	cp -r phpDocumentor/incubator	debian/phpdocumentor/usr/share/phpdocumentor
 	mkdir -p debian/phpdocumentor/usr/lib/phpdocumentor/
 	cp phpDocumentor/composer.json  debian/phpdocumentor/usr/lib/phpdocumentor/composer.json
-	sed -i 's/incubator/\/usr\/share\/phpdocumentor\/incubator'  debian/phpdocumentor/usr/lib/phpdocumentor/composer.json
+	sed -i 's/incubator/\/usr\/share\/phpdocumentor\/incubator/'  debian/phpdocumentor/usr/lib/phpdocumentor/composer.json
 	sed -i '/require/c require "/usr/share/phpdocumentor/phpDocumentor/AutoloaderLocator.php";' debian/phpdocumentor/usr/bin/phpdoc
 	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
 	sed -i '/src\/phpDocumentor/c\"phpDocumentor\\\\": [ "/usr/share/phpdocumentor/" ],' phpDocumentor/composer.json
