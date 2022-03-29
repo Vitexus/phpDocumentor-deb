@@ -16,18 +16,23 @@ override_dh_auto_clean:
 
 override_dh_prep:
 	rm -rfv phpDocumentor
-	php -v | head -1 | awk '{print $$2}' | awk -F- '{print $$1}' | sed 's/v//'
 	git clone --depth 1 --branch ${VERSION} https://github.com/phpDocumentor/phpDocumentor.git
-	composer update --working-dir=phpDocumentor  --no-dev --no-plugins
-	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
-	sed -i '/cache/c  return sys_get_temp_dir()."/". basename(\$$this->getProjectDir())."/".\$$this->environment;' phpDocumentor/src/phpDocumentor/Kernel.php
-	php -d phar.readonly=off /usr/bin/phar-composer -n build --ansi phpDocumentor
 	dh_prep
 
 override_dh_auto_install:
 	dh_auto_install -- prefix=/usr
 	mkdir -p debian/phpdocumentor/usr/bin
-	mv phpdocumentor.phar	debian/phpdocumentor/usr/bin/phpdoc
+	cp -r phpDocumentor/bin/phpdoc	debian/phpdocumentor/usr/bin
+	mkdir -p debian/phpdocumentor/usr/share/phpdocumentor
+	cp -r phpDocumentor/src/*	debian/phpdocumentor/usr/share/phpdocumentor
+	cp -r phpDocumentor/incubator	debian/phpdocumentor/usr/share/phpdocumentor
+	mkdir -p debian/phpdocumentor/usr/lib/phpdocumentor/
+	cp phpDocumentor/composer.json  debian/phpdocumentor/usr/lib/phpdocumentor/composer.json
+	sed -i 's/incubator/\/usr\/share\/phpdocumentor\/incubator'  debian/phpdocumentor/usr/lib/phpdocumentor/composer.json
+	sed -i '/require/c require "/usr/share/phpdocumentor/phpDocumentor/AutoloaderLocator.php";' debian/phpdocumentor/usr/bin/phpdoc
+	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
+	sed -i '/src\/phpDocumentor/c\"phpDocumentor\\\\": [ "/usr/share/phpdocumentor/" ],' phpDocumentor/composer.json
+	sed -i '/cache/c  return sys_get_temp_dir()."/". basename(\$$this->getProjectDir())."/".\$$this->environment;' phpDocumentor/src/phpDocumentor/Kernel.php
 
 #override_dh_install:
 #       dh_install --list-missing -X.pyc -X.pyo

@@ -1,0 +1,26 @@
+#!/bin/sh
+# postinst script for phpdocumentor
+set -e
+
+. /usr/share/debconf/confmodule
+
+case "$1" in
+    configure)
+	composer-debian phpdocumentor
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+
+
+
+#DEBHELPER#
+
+exit 0
