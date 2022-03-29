@@ -16,7 +16,7 @@ override_dh_auto_clean:
 
 override_dh_prep:
 	rm -rfv phpDocumentor
-	git clone --depth 1 --branch ${VERSION} https://github.com/phpDocumentor/phpDocumentor.git
+	git clone --depth 1 --branch v${VERSION} https://github.com/phpDocumentor/phpDocumentor.git
 	dh_prep
 
 override_dh_auto_install:
