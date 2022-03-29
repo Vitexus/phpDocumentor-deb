@@ -33,6 +33,8 @@ override_dh_auto_install:
 	sed -i '/phpdoc.php/c\"bin": ["bin/phpdoc", "bin/phpdoc.php"],' phpDocumentor/composer.json
 	sed -i '/src\/phpDocumentor/c\"phpDocumentor\\\\": [ "/usr/share/phpdocumentor/" ],' phpDocumentor/composer.json
 	sed -i '/cache/c  return sys_get_temp_dir()."/". basename(\$$this->getProjectDir())."/".\$$this->environment;' phpDocumentor/src/phpDocumentor/Kernel.php
+#	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  debian/conf/composer.json |sponge debian/conf/composer.json
+
 
 #override_dh_install:
 #       dh_install --list-missing -X.pyc -X.pyo

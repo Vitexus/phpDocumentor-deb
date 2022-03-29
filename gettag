@@ -1,5 +1,5 @@
 #!/bin/bash
-PHPVER=`php -v | head -1 | awk '{print $2}' | awk -F- '{print $1}' |sed 's/v//'`
+PHPVER=`php -v | head -1 | awk '{print $2}' | awk -F- '{print $1}'`
 
 
 verlte() {
