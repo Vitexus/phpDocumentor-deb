@@ -27,6 +27,8 @@ override_dh_auto_install:
 	cp -r phpDocumentor/src/*	debian/phpdocumentor/usr/share/phpdocumentor
 	cp phpDocumentor/.env	phpDocumentor/VERSION	debian/phpdocumentor/usr/share/phpdocumentor
 	cp -r phpDocumentor/incubator	debian/phpdocumentor/usr/share/phpdocumentor
+	cp -r phpDocumentor/data	debian/phpdocumentor/usr/share/phpdocumentor
+	chmod 666 debian/phpdocumentor/usr/share/phpdocumentor/data
 	mkdir -p debian/phpdocumentor/usr/lib/phpdocumentor/
 	cp phpDocumentor/composer.json  debian/phpdocumentor/usr/lib/phpdocumentor/composer.json
 	cp -r phpDocumentor/config	debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/
@@ -38,9 +40,12 @@ override_dh_auto_install:
 	sed -i '/vendorFolderWhenInstalledWithComposer = /c $$vendorFolderWhenInstalledWithComposer = "/var/lib/composer/phpdocumentor/";' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/AutoloaderLocator.php
 	sed -i '/new Dotenv/c (new Dotenv())->load("/usr/share/phpdocumentor/.env");' debian/phpdocumentor/usr/bin/phpdoc
 	sed -i '/..\/VERSION/c $$version = trim(file_get_contents("/usr/share/phpdocumentor/VERSION"));' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/Console/Application.php
-	sed -i 's/%kernel.project_dir%\/vendor\//\/var\/lib\/composer\/phpdocumentor\//' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/config/reflection.yaml
+	sed -i '/composerTemplatePath =/c$$composerTemplatePath = "/usr/share/phpdocumentor/data/templates"; ' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/Application.php
+	sed -i 's/\.\.\/src\//\/usr\/share\/phpdocumentor\//' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/config/*.yaml
+	sed -i 's/%kernel.project_dir%\/vendor\//\/var\/lib\/composer\/phpdocumentor\//' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/config/*.yaml
+	sed -i 's/\.\./\/usr\/share\/phpdocumentor/' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/config/guides.yaml
+	sed -i "89i\          - '/usr/share/phpdocumentor/phpDocumentor/config/bundles.php'" debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/config/services.yaml
 #	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  debian/conf/composer.json |sponge debian/conf/composer.json
-
 
 #override_dh_install:
 #       dh_install --list-missing -X.pyc -X.pyo
