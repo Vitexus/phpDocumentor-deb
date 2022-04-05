@@ -45,6 +45,8 @@ override_dh_auto_install:
 	sed -i 's/%kernel.project_dir%\/vendor\//\/var\/lib\/composer\/phpdocumentor\//' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/config/*.yaml
 	sed -i 's/\.\./\/usr\/share\/phpdocumentor/' debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/config/guides.yaml
 	sed -i "89i\          - '/usr/share/phpdocumentor/phpDocumentor/config/bundles.php'" debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/config/services.yaml
+	mkdir -p debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/var/log
+	chmod 666 debian/phpdocumentor/usr/share/phpdocumentor/phpDocumentor/var/log
 #	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  debian/conf/composer.json |sponge debian/conf/composer.json
 
 #override_dh_install:
