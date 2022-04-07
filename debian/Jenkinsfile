@@ -41,6 +41,7 @@ distributions.each {
                     returnStdout: true
                 ).trim()
                 ver = VERSION + '~' + distroCodename + '~' + env.BUILD_NUMBER
+		sh 'dch -v ' + ver + '"Build '  + env.BUILD_NUMBER + '"' 
             }
             stage('Build '  + ' ' + distribution) {
                 buildImage.inside {
