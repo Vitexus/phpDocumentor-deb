@@ -44,7 +44,6 @@ distributions.each {
             }
             stage('Build '  + ' ' + distribution) {
                 buildImage.inside {
-		    sh './debian/upver.sh'
                     sh 'sudo apt-get update'
                     sh 'sudo chown jenkins:jenkins ..'
                     sh 'debuild-pbuilder  -i -us -uc -b'
