@@ -8,7 +8,7 @@ Homepage: https://github.com/Vitexus/PhpDocumentor-deb.git
 
 Package: phpdocumentor
 Multi-Arch: foreign
-Depends: ${misc:Depends}, php-cli, php, php-ctype, php-dom, php-iconv, php-json, php-xml, php-simplexml, php-zip, libjs-font-awesome, composer-debian
+Depends: ${misc:Depends}, php-cli, php, php-ctype, php-dom, php-mbstring, php-iconv, php-json, php-xml, php-simplexml, php-zip, libjs-font-awesome, composer-debian
 Architecture: all
 Description: enables you to generate documentation from your PHP source code. 
  a tool that makes it possible to generate documentation directly 
