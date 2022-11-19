@@ -9,7 +9,9 @@ case "$1" in
         if [ -z $WEB_USER ]; then
 	. /usr/lib/composer-debian/webusergroup
 	fi
-	su - ${WEB_USER} -s /bin/bash -c "composer config -d /usr/lib/phpdocumentor --no-plugins allow-plugins.symfony/flex true"
+	export COMPOSER_HOME="/var/lib/composer/"
+        export COMPOSER_NO_INTERACTION=1
+	su - ${WEB_USER} -s /bin/bash -c "composer config -d /usr/lib/phpdocumentor --no-plugins allow-plugins.symfony/flex true || true"
 	composer-debian phpdocumentor
 	chmod 777 /usr/share/phpdocumentor/phpDocumentor/var/log
     ;;
