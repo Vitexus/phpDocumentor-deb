@@ -6,12 +6,10 @@ set -e
 
 case "$1" in
     configure)
-        if [ -z $WEB_USER ]; then
-	. /usr/lib/composer-debian/webusergroup
-	fi
+        export COMPOSER_ALLOW_SUPERUSER=1
 	export COMPOSER_HOME="/var/lib/composer/"
         export COMPOSER_NO_INTERACTION=1
-	su - ${WEB_USER} -s /bin/bash -c "composer config -d /usr/lib/phpdocumentor --no-plugins allow-plugins.symfony/flex true || true"
+	composer config -d /usr/lib/phpdocumentor --no-plugins allow-plugins.symfony/flex true || true
 	composer-debian phpdocumentor
 	chmod 777 /usr/share/phpdocumentor/phpDocumentor/var/log
     ;;
