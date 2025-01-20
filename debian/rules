@@ -12,7 +12,7 @@ VERSION := $(shell ./gettag)
 
 override_dh_auto_install:
 	mkdir -p debian/phpdocumentor/usr/bin
-	wget -O debian/phpdocumentor/usr/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`/phpDocumentor.phar"
+	wget -O debian/phpdocumentor/usr/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v`./gettag|sed 's/v//'`/phpDocumentor.phar"
 	chmod +x debian/phpdocumentor/usr/bin/phpdoc
 
 #	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  debian/conf/composer.json |sponge debian/conf/composer.json
