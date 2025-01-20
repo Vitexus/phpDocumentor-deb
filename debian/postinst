@@ -6,12 +6,6 @@ set -e
 
 case "$1" in
     configure)
-        export COMPOSER_ALLOW_SUPERUSER=1
-	export COMPOSER_HOME="/var/lib/composer/"
-        export COMPOSER_NO_INTERACTION=1
-	composer config -d /usr/lib/phpdocumentor --no-plugins allow-plugins.symfony/flex true || true
-	composer-debian phpdocumentor
-	chmod 777 /usr/share/phpdocumentor/phpDocumentor/var/log
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
