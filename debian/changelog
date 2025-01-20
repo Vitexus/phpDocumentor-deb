@@ -1,4 +1,16 @@
-phpdocumentor (3.2.1) UNRELEASED; urgency=medium
+phpdocumentor (3.6.0) UNRELEASED; urgency=medium
+
+  * Updated to 3.6.0
+
+ -- vitex <info@vitexsoftware.cz>  Mon, 20 Jan 2025 02:36:21 +0100
+
+phpdocumentor (3.2.1) unstable; urgency=medium
+
+  * Updated to 3.2.1
+
+ -- vitex <info@vitexsoftware.cz>  Mon, 20 Jan 2025 02:36:21 +0100
+
+phpdocumentor (3.2.1) unstable; urgency=medium
 
   [ CyberVitexus ]
   * Phar Based build
@@ -7,4 +19,4 @@ phpdocumentor (3.2.1) UNRELEASED; urgency=medium
   * Updated to 3.2.1
   * Updated to 3.2.1
 
- -- vitex <info@vitexsoftware.cz>  Tue, 01 Oct 2024 12:53:09 +0200
+ -- vitex <info@vitexsoftware.cz>  Mon, 20 Jan 2025 02:34:00 +0100

@@ -1,19 +1,17 @@
 #!/bin/bash
-PHPVER=`php -v | head -1 | awk '{print $2}' | awk -F- '{print $1}'`
+PHPVER=$(php -v | head -1 | awk '{print $2}' | awk -F- '{print $1}')
 
 
 verlte() {
-    [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
+    [  "$1" = "$(echo -e "$1\n$2" | sort -V | head -n1)" ]
 }
 
 verlt() {
     [ "$1" = "$2" ] && return 1 || verlte $1 $2
 }
 
-if [ -z $VERSION ]; then
-    VERSION=`curl -s "https://api.github.com/repos/phpDocumentor/phpDocumentor/tags" | jq -r '.[0].name'`
+if [ -z "$VERSION" ]; then
+    VERSION=$(curl -s "https://api.github.com/repos/phpDocumentor/phpDocumentor/tags" | jq -r '.[0].name')
 fi
-
-VERSION=3.2.1
 
 echo -n $VERSION

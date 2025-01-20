@@ -4,3 +4,6 @@ debian/debhelper-build-stamp
 debian/files  debian/changelog  
 debian/phpdocumentor.debhelper.log  
 debian/phpdocumentor.substvars  
+/nbproject/private/
+/debian/.debhelper/
+/debian/files
