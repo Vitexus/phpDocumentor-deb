@@ -1,8 +1,14 @@
-phpdocumentor (3.6.0) UNRELEASED; urgency=medium
+phpdocumentor (3.7.1) UNRELEASED; urgency=medium
+
+  * Updated to 3.7.1
+
+ -- vitex <info@vitexsoftware.cz>  Mon, 10 Mar 2025 10:53:49 +0100
+
+phpdocumentor (3.6.0) unstable; urgency=medium
 
   * Updated to 3.6.0
 
- -- vitex <info@vitexsoftware.cz>  Mon, 20 Jan 2025 02:36:21 +0100
+ -- vitex <info@vitexsoftware.cz>  Mon, 10 Mar 2025 10:53:49 +0100
 
 phpdocumentor (3.2.1) unstable; urgency=medium
 
