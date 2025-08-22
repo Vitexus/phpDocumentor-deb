@@ -10,14 +10,8 @@
 	dh $@
 
 override_dh_auto_install:
-	mkdir -p debian/phpdocumentor/usr/bin
- 	LATEST_VERSION=$$(curl -s https://api.github.com/repos/phpDocumentor/phpDocumentor/releases/latest | jq -r .tag_name); \
- 	if [ -z "$$LATEST_VERSION" ] || [ "$$LATEST_VERSION" = "null" ]; then \
-		 LATEST_VERSION=$$(curl -s https://github.com/phpDocumentor/phpDocumentor/releases | grep -oP 'href="/phpDocumentor/phpDocumentor/releases/tag/\\K[^" ]+' | head -1); \
- 	fi; \
- 	LATEST_VERSION=$${LATEST_VERSION#v}; \
- 	wget -O debian/phpdocumentor/usr/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v$${LATEST_VERSION}/phpDocumentor.phar"; \
-	chmod +x debian/phpdocumentor/usr/bin/phpdoc
+	debian/download.sh
+	dh_auto_install
 
 #	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  debian/conf/composer.json |sponge debian/conf/composer.json
 

@@ -8,4 +8,4 @@ debian/phpdocumentor.substvars
 /debian/.debhelper/
 /debian/files
 .phpdoc/
-
+/debian/tmp/
