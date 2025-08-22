@@ -5,15 +5,14 @@
 #export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
-VERSION := $(shell curl -s https://api.github.com/repos/phpDocumentor/phpDocumentor/releases/latest | grep 'tag_name' | cut -d '"' -f4)
+VERSION := $(shell ./gettag )
 
 %:
 	dh $@
 
 override_dh_auto_install:
 	mkdir -p debian/phpdocumentor/usr/bin
-	LATEST_VERSION=$(shell curl -s https://api.github.com/repos/phpDocumentor/phpDocumentor/releases/latest | grep 'tag_name' | cut -d '"' -f4); \
-	wget -O debian/phpdocumentor/usr/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/$${LATEST_VERSION}/phpDocumentor.phar"
+	wget -O debian/phpdocumentor/usr/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/${VERSION}/phpDocumentor.phar"
 	chmod +x debian/phpdocumentor/usr/bin/phpdoc
 
 #	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  debian/conf/composer.json |sponge debian/conf/composer.json

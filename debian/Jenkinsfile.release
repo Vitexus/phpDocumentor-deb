@@ -38,6 +38,7 @@ distributions.each { distro ->
                     def imageName = vendor + '/' + imagePrefix + distroCode + ':latest'
                     buildImage = docker.image(imageName)
                     sh 'git checkout debian/changelog'
+                    sh './debian/upver.sh'
                     def version = sh (
                         script: 'dpkg-parsechangelog --show-field Version',
                         returnStdout: true
